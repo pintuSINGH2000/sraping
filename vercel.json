@@ -1,14 +1,18 @@
 {
   "version": 2,
-  "functions": {
-    "api/cron.py": {
-      "runtime": "python3.9"
+  "builds": [
+    {
+      "src": "api/*.py",
+      "use": "@vercel/python"
     }
-  },
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1.py" }
+  ],
   "crons": [
     {
-      "path": "/api/scraper",
-      "schedule": "50 18 * * *"  
+      "path": "/api/cron",
+      "schedule": "50 18 * * *"
     }
   ]
 }
